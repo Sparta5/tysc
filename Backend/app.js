@@ -4,11 +4,23 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var bodyParser = require('body-parser')
+var cors=require('cors')
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
+app.use(cors({
+  origin:[ //允许跨域的客户端源头有哪些
+    'http://localhost:8080', //vue脚手架
+    'http://localhost:8081', //vue脚手架
+    "http://127.0.0.1:5050", //live server
+    "http://xzvue.applinzi.com" //新浪云上的vue项目
+  ],
+  credentials:true //要求允许携带cookie
+}))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

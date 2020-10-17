@@ -8,6 +8,7 @@ import qs from 'qs'
 import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.min.css';
 Vue.use(MintUI);
+
 //配置服务器的默认地址
 axios.defaults.baseURL = 'http://127.0.0.1:3000'
 

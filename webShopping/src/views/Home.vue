@@ -32,62 +32,87 @@
           :auto="3000"
           :speed="500"
           :continuous="true">
-          <mt-swipe-item><img src="../assets/images/caruser/1woc.jpg"></mt-swipe-item>
-          <mt-swipe-item><img src="../assets/images/caruser/2woc.jpg"></mt-swipe-item>
-          <mt-swipe-item><img src="../assets/images/caruser/3woc.jpg"></mt-swipe-item>
-          <mt-swipe-item><img src="../assets/images/caruser/4woc.jpg"></mt-swipe-item>
+          <mt-swipe-item v-for="(carousels,i) of product.carousel_top" :key="i"><img :src="require('../assets/'+carousels.img)"></mt-swipe-item>
       </mt-swipe>
     </div>
     <!-- 分类 -->
     <div class="sort_list">
       <ul>
-        <li v-for="(k,i) of 4" :key="i">
-          <div class="list_img">
-            <img src="../assets/images/list/001.jpg">
-            <p>蔬菜</p>
-          </div>
-        </li>
-      </ul>
-      <ul>
-        <li v-for="(k,i) of 4" :key="i">
-          <div class="list_img">
-            <img src="../assets/images/list/001.jpg">
-            <p>蔬菜</p>
-          </div>
-        </li>
-      </ul>
-      <ul>
-        <li v-for="(k,i) of 4" :key="i">
-          <div class="list_img">
-            <img src="../assets/images/list/001.jpg">
+        <li v-for="(k,i) of 12" :key="i">
+          <div>
+            <img src="../assets/images/index/list/001.jpg">
             <p>蔬菜</p>
           </div>
         </li>
       </ul>
     </div>
-    <!-- 内容 -->
-    <div class="floor">
-      <div><router-link to="/"><img src="../assets/images/index/main/01bxsj.jpg"></router-link></div>
-      <div>
-        <router-link to="/"><img src="../assets/images/index/main/01_log.png">优选蔬菜</router-link>
-        <span></span>
-      </div>
+    <!-- 楼层分类 （大图 轮播 列表） 组件预留-->
+    <div
+      ifinite-scroll-distance="5"
+      v-infinite-scroll="loadMore"
+      infinite-scroll-disabled="busy"
+      infinite-scroll-immediate-check="true">
+      <my-classify :family="product.family" :listAndCarouse="listAndCarouse" v-if="product.length !=0"></my-classify>
     </div>
+    <my-footer></my-footer>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import myFooter from '../components/footer';
+import myClassify from '../components/Home/classify';
+
 
 export default {
   components: {
-    HelloWorld
+    myFooter,myClassify
+  },
+  data(){
+    return{
+      product:[],//顶部轮播、类别
+      listAndCarouse:[],//列表轮播和列表
+      busy:false,//标识当前服务器正在空闲，可以处理用户滚动行为所触发的滚动方法
+      variety:1,//记录下一次要查询的品种编号
+    }
+    
+  },
+  methods:{
+    loadData(fid){
+
+      //显示加载提示框
+      this.$indicator.open({
+        text:'加载中...',
+        spinnerType:'double-bounce'
+      });
+      this.busy = true;//不能触发滚动方法
+
+      this.axios.get('/indexList?fid=' + fid).then(result=>{
+        this.listAndCarouse.push(result.data)
+        this.busy = false;//可以触发滚动方法
+        this.$indicator.close();//关闭加载提示框
+      })
+    },
+    //滚动到指定距离范围内时加载更多的服务器数据
+    loadMore(){
+      this.variety++;
+      if(this.variety <= this.product.family.lenght){
+        this.loadData(this.variety)
+      }
+    }
+
+  },
+  mounted(){
+    this.axios.get('/').then(result=>{
+      this.product=result.data
+    });
+    //首次且只有一次调用列表和列表轮播
+    this.loadData(this.variety)
   }
 }
 </script>
 <style lang="scss">
 .home{
+  padding-bottom: 55px;
   font-size: 19px;
   .header{
     background-color: rgb(92, 143, 12)!important;
@@ -152,24 +177,28 @@ export default {
   //--------
   //轮播图-----
   .swipe{
-    height: 200px;
-    img{width:100%;}
+    height: 243px;
+    img{
+      width:100%;
+    }
   }
   //分类
   .sort_list{
     // display: flex;
     // flex-direction: column;
     ul{
-        padding-top: 10px;height: 80px;
-      
+        
+        display: flex;
+        flex-wrap: wrap;
       li{
-        width: 25%;height: 80px;
-        align-self: center;
-        float: left;
+        width: 25%;
+        padding: 0.5375rem 0rem;
+        // align-self: center;
+        // float: left;
         text-align: center;
-        .list_img{
+        div{
           display: block;
-          img{height: 60px;height: 60px;}
+          img{width: 60%;}
           p{
             font-size: 12px;height: 20px;line-height: 20px;
           }
@@ -179,11 +208,6 @@ export default {
     }
   }
   //内容
-  .floor{
 
-    div:first-child{
-      img{width: 100%;line-height: 100px;}
-    }
-  }
 }
 </style>

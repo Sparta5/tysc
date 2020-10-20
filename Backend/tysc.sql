@@ -43,7 +43,9 @@ INSERT INTO `tysc_index_product` (`pid`,`family_id`, `title`,`pic`,`href`) VALUE
 (3,1,'精品青椒D','images/details/1L/on1/03_t1.jpg','3'),
 (4,1,'精品蒜苔','images/details/1L/on1/04_t1.jpg','4'),
 
-(5,2,'燕之坊 自然吊干400g 新疆楼兰...','/img/index_img/2L01.jpg','11');
+(5,2,'燕之坊 自然吊干400g 新疆楼兰...','/img/index_img/2L01.jpg','11'),
+(6,2,'燕之坊 自然吊干400g 新疆楼兰...','/img/index_img/2L01.jpg','11'),
+(7,2,'燕之坊 自然吊干400g 新疆楼兰...','/img/index_img/2L01.jpg','11');
 
 /**详情页*/-------------
 CREATE TABLE `tysc_product_details` (
@@ -93,7 +95,7 @@ INSERT INTO `tysc_index_carousel` (`cid`,`family_id`,`img`,`title`,`href`) VALUE
 (7,1, 'images/index/carouse_list/1L-03.jpg', '轮播广告商品3', '7'),
 
 (8,2, 'images/index/carouse_list/2L-01.jpg', '轮播广告商品3', '12'),
-(9,2, 'images/index/carouse_list/2L-04.jpg', '轮播广告商品3', '13'),
+(9,2, 'images/index/carouse_list/2L-02.jpg', '轮播广告商品3', '13'),
 (10,2, 'images/index/carouse_list/2L-03.jpg', '轮播广告商品3', '14');
 
 

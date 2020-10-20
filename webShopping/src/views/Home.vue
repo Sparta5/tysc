@@ -38,9 +38,9 @@
     <!-- 分类 -->
     <div class="sort_list">
       <ul>
-        <li v-for="(k,i) of 12" :key="i">
+        <li v-for="(varietyLists,i) of varietyList" :key="i">
           <div>
-            <img src="../assets/images/index/list/001.jpg">
+            <router-link to="/"><img :src="require('../assets/'+varietyLists.imgs)"></router-link>
             <p>蔬菜</p>
           </div>
         </li>
@@ -73,6 +73,20 @@ export default {
       listAndCarouse:[],//列表轮播和列表
       busy:false,//标识当前服务器正在空闲，可以处理用户滚动行为所触发的滚动方法
       variety:1,//记录下一次要查询的品种编号
+      varietyList:[//头部分类
+        {imgs:'images/index/list/01_lqcj.jpg'},
+        {imgs:'images/index/list/02_qgf5.jpg'},
+        {imgs:'images/index/list/03_sigu.jpg'},
+        {imgs:'images/index/list/04_4abc.jpg'},
+        {imgs:'images/index/list/05_vqz7.jpg'},
+        {imgs:'images/index/list/06_rp6f.jpg'},
+        {imgs:'images/index/list/07_q1at.jpg'},
+        {imgs:'images/index/list/08_k5op.jpg'},
+        {imgs:'images/index/list/09_lb27.jpg'},
+        {imgs:'images/index/list/10_1h4d.jpg'},
+        {imgs:'images/index/list/11_govc.jpg'},
+        {imgs:'images/index/list/12_0t75.jpg'}
+      ]
     }
     
   },

@@ -1,10 +1,13 @@
 <template>
+<!-- 测试专用 -->
   <div class="about">
     <my-search></my-search>
     <h1>This is an about page</h1>
+    <my-carouseList></my-carouseList>
   </div>
 </template>
 <script>
+<<<<<<< HEAD
 import mySearch from '../components/myItem/mySearch'
 export default {
   components:{
@@ -23,3 +26,12 @@ body{max-width: 650px;margin: 0px auto;}
   }
 }
 </style>
+=======
+import myCarouseList from '../components/Home/carouseList';
+export default {
+  components: {
+    myCarouseList
+  }
+}
+</script>
+>>>>>>> f67bd64a6790809c5180425d84723bcf6fe07266

@@ -1,0 +1,30 @@
+{
+  "id": "2145905",
+  "name": "item",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1287721",
+      "name": "叉叉",
+      "font_class": "chacha",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "3546184",
+      "name": "菜单",
+      "font_class": "caidan",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "8842685",
+      "name": "铃铛",
+      "font_class": "lingdang",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    }
+  ]
+}

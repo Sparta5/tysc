@@ -12,6 +12,11 @@ import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.min.css';
 Vue.use(MintUI);
 
+import Vant from 'vant';
+import 'vant/lib/index.css';
+Vue.use(Vant);
+
+
 //配置服务器的默认地址
 axios.defaults.baseURL = 'http://127.0.0.1:3000'
 Vue.prototype.axios = axios;

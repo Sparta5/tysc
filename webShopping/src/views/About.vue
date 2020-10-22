@@ -13,15 +13,13 @@ export default {
   components:{
     mySearch
   },
-  data(){
-    
-  }
+  
 }
 </script>
 <style lang="scss">
 // body{max-width: 650px;margin: 0px auto;}
 .about{
-  height: 300px;margin: 0px auto;
+  // height: 300px;margin: 0px auto;
   // border: 1px solid red;
   h1{
     width: 95%;height: 2.25rem; border: 1px solid rgb(160, 137, 5);

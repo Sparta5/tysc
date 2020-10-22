@@ -17,10 +17,9 @@
       <span class="iconfont icon-lingdang isicon"></span>
        <!-- 弹出背景内容设置 -->
       <van-popup position="top" class="popup_bg"
-                :style="{ height: '100%' ,top:'3.9rem'}"
-                v-model="show" close-icon-position="top-right"
-                closeable>
-                
+              :style="{ height: '100%' ,top:'3.9rem'}"
+              v-model="show" close-icon-position="top-right"
+              closeable>
         <p><router-link to="/"><img src="https://www.xgdq.com/wap_themes/xgdq3/images/w_img/shouye_logo@2x.png"></router-link></p>
         <p>热门搜索</p>
         <ul>
@@ -30,13 +29,16 @@
           <li><router-link to="/">D-620 Alr</router-link></li>
           <li><router-link to="/">T10</router-link></li>
         </ul>
+        <p class="res" v-show="isCount">搜索-<span>{{value?value:'全部'}}</span> 共有：<span>{{count}} &nbsp;</span>个结果</p>
         <div class="searchList">
           <ul>
-            <li v-for="(k,i) of 6" :key="i">
-              <router-link to="details/1">
-                <img src="https://www.xgdq.com/public/images/64/59/4f/74561459edf404300e99d08444c5b0bf6e4717c7.jpg?1582873122#h" alt="">
-                <p>小狗无线车载吸尘器A10 Mix</p>
-                <span>¥499.00</span>
+            <li v-for="(res,i) of searchRes" :key="i">
+              <router-link :to="'details/'+res.href">
+                <!-- <img src="https://www.xgdq.com/public/images/64/59/4f/74561459edf404300e99d08444c5b0bf6e4717c7.jpg?1582873122#h" alt=""> -->
+                <img :src="require('../../assets/'+res.pic)">
+                      <!-- require('../../assets/'+ carousels.img -->
+                <p v-text="res.title"></p>
+                <span v-text="`¥  ${res.price}`"></span>
               </router-link>
             </li>
           </ul>
@@ -85,7 +87,10 @@ export default {
       isList:true,
       activeName: '',
       isHidden:false,
-      value:null
+      value:'',
+      searchRes:[],//保存搜索结果
+      count:0,//搜索的数量
+      isCount:false//默认隐藏数量
     }
   },
   methods:{
@@ -99,20 +104,28 @@ export default {
         this.isHidden=false
       }
     },
-    //弹框
+     //弹框
     showPopup() {
       // if(this.show){
         // this.show = false
       // }else{
-        this.isList=true,
-        this.isHidden=false
+        this.isList = true,
+        this.isHidden = false
         this.show = true;
+        this.isCount = false;
+        this.searchRes = null
       // }
     },
-    searchSubmit(){
-      // console.log(this.value)
+    searchSubmit(){//搜索
+      this.count = "0";
+      this.isCount=true;
       this.axios.get('/details/search?title='+this.value).then(result=>{
-        console.log(result)
+        let res = result.data;
+        if(res.code == 1){
+          this.searchRes = res.searchs;
+          this.count = res.searchs.length;
+          console.log(res.searchs);
+        }
       })
     }
   }
@@ -120,12 +133,12 @@ export default {
 </script>
 <style lang="scss">
 .mysearch{
-  width: 100%;
+  width: 95%;
   display: block;
   margin: 0px auto;
   position: relative;
   .search{//  搜索样式设置
-     height: 2.75rem;width: 100%;
+     height: 2.75rem;width:100%;
      height: 44px;
     .mint-searchbar{
       background-color:white;
@@ -140,6 +153,7 @@ export default {
     }
     // .mint-search-list{width: 640px; margin: 0px auto;}
   }
+
   // 菜单样式和右边
   .list{
     //修改顶部两边icon图标隐藏-----//
@@ -155,7 +169,7 @@ export default {
       width: 35px;
       display: inline-block;
       font-size: 0.5125rem;
-      margin-right: 0.41875rem;
+      // padding-left: 0.25rem;
     }
     >.iconfont{
       width: 28px;height:28px;
@@ -164,18 +178,47 @@ export default {
     }
     //弹出背景设置
     .popup_bg{
-
+      >ul{
+        padding: 1rem 1.6875rem 0;border-bottom: 0.0325rem solid #e9e9e9;
+        height: 5rem;
+        li{
+          float: left;margin:0rem 1.25rem 0.75rem 0;
+          a{
+            display: block;
+            border: 1px solid rgba(221, 221, 221, 0.534);
+            border-radius: 13px;
+            font-size: 13px;
+            padding: 7px 15px;
+            color: #888;
+          }
+        }
+      }
       p:first-child{//狗狗log
         img{width: 3rem;height: 1.75rem;margin-left: 1.25rem;}
       }
+      p:nth-child(2){//热门
+        font-size: 13px;
+        color: #999;
+        line-height: 19px;
+        padding: 0.45rem 1.5rem
+      }
+        //搜索结果样式----
+      p:nth-child(4){
+          padding: 0.3rem 0rem 0rem 1.5rem;
+          height: 1rem;line-height: 1rem;
+          color: #555;
+          font-size: 0.85rem;
+          span:first-child{color: rgba(236, 130, 8, 0.932);font-weight: 400;}
+          span:last-child{color: rgb(165, 65, 29);font-weight: 700;}
+      }
+       //----
       .searchList{
         >ul{
-          padding: 0px 0px;
+          // padding: 0px 0px;
           display: block;
           display: flex;
           flex-wrap: wrap;
           width: 100%;
-          // height: 700px;
           li{
             width: 33%;
             text-align: center;
@@ -201,28 +244,7 @@ export default {
           }
         }
       }
-      p:nth-child(2){//热门
-        font-size: 13px;
-        color: #999;
-        line-height: 19px;
-        padding: 0.45rem 1.5rem
-      }
-      >ul{
-        padding: 1.25rem 1.6875rem 0;border-bottom: 0.0625rem solid #e9e9e9;
-        height: 5rem;
-        li{
-          float: left;margin:0rem 1.25rem 0.75rem 0;
-          a{
-            display: block;
-            border: 1px solid rgba(221, 221, 221, 0.534);
-            border-radius: 13px;
-            font-size: 13px;
-            padding: 7px 15px;
-            color: #888;
-          }
-        }
-        
-      }
+
     }
   }
   .unlist{//控制菜单显示

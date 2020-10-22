@@ -4,6 +4,7 @@
     <my-search></my-search>
     <h1>This is an about page</h1>
     <!-- <my-carouseList></my-carouseList> -->
+
   </div>
 </template>
 <script>
@@ -11,6 +12,9 @@ import mySearch from '../components/myItem/mySearch'
 export default {
   components:{
     mySearch
+  },
+  data(){
+    
   }
 }
 </script>

@@ -37,4 +37,20 @@ router.get("/indexList",(req,res)=>{
     res.send(indexList)
   })
 })
+
+/*******关键字搜索********/
+// router.get('/search',(req,res)=>{
+//   let title = req.query.title;
+//   let sql = 'SELECT * FROM tysc_product_details LIKE "%"+?+"%"';
+//   pool.query(sql,[title],(err,result)=>{
+//     if(err) throw err;
+//     // console.log(result);
+//     if(result.length>0){
+//       res.send({message:'查询到结果',code:1});
+//     }else{
+//       res.send({message:'查询失败',code:0});
+//     }
+//   })
+// })
+
 module.exports = router;

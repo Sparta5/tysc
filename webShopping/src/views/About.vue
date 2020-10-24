@@ -2,6 +2,7 @@
 <!-- 测试专用 -->
   <div class="about">
     <my-search></my-search>
+    <my-carouse></my-carouse>
     <h1>This is an about page</h1>
     <!-- <my-carouseList></my-carouseList> -->
 
@@ -9,9 +10,10 @@
 </template>
 <script>
 import mySearch from '../components/myItem/mySearch'
+import myCarouse from '../components/myItem/myCarouse'
 export default {
   components:{
-    mySearch
+    mySearch,myCarouse
   },
   
 }

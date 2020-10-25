@@ -1,21 +1,22 @@
 <template>
   <div class="classify">
-    <div v-for="(familys,i) of family" :key="i">
-      <div v-if="family.length != 0 && listAndCarouse.length !=0">
-        <div class="floor">
+    <div v-for="(indexVerietys,i) of indexVeriety" :key="i">
+       <!-- v-if="family.length != 0 && listAndCarouse.length !=0" -->
+      <div>
+        <div class="floor" v-for="(familys,v) of indexVerietys.family" :key="v">
           <div><router-link to="/"><img :src="require('../../assets/'+familys.img)"></router-link></div>
           <div>
             <router-link to="/"><img :src="require('../../assets/'+familys.img_s)"></router-link>
-            <!-- <router-link to="/"><img :src="require('../../assets/images/index/main/02_log.png')"></router-link> -->
+            <router-link to="/"><img :src="require('../../assets/images/index/main/02_log.png')"></router-link>
             <strong v-text="familys.fname"></strong>
           </div>
         </div>
           <!-- 分类轮播 -->
         <div class="carouse">
           <swiper ref="mySwiper" :options="swiperOptions" class="swiper">
-            <swiper-slide  v-for="(carousels,k) of listAndCarouse[0].carouselList" :key="k">
-              <router-link :to="'details/'+carousels.href">
-                <img :src="require('../../assets/'+ carousels.img)">
+            <swiper-slide  v-for="(carouselLists,k) of indexVerietys.carouselList" :key="k">
+              <router-link :to="'details/'+carouselLists.href">
+                <img :src="require('../../assets/'+ carouselLists.img)">
               </router-link>
             </swiper-slide>
           </swiper>
@@ -23,16 +24,16 @@
         <!-- 分类列表 -->
         <div class="home_list" >
           <ul>
-            <li v-for="(proLists,t) of listAndCarouse[0].proList" :key="t">
+            <li v-for="(proLists,t) of indexVerietys.proList" :key="t">
               <div>
                 <router-link to="/">
                 <img :src="require('../../assets/'+proLists.pic)" alt="">
                 </router-link>
               </div>
-              <p> <router-link :to="'ditais/'+proLists.href" v-text="proLists.title"></router-link> </p>
+                                                        <!-- v-text="(proLists.title).slice(0,5)" -->
+              <p> <router-link :to="'ditais/'+proLists.href" v-text="(proLists.title).substring(0,5)"></router-link> </p>
               <p>
-                <label>价格: </label>
-                <span v-text="'¥'+proLists.price"></span>
+                <label>价格: </label><span v-text="'¥'+proLists.price"></span>
               </p>
             </li>
           </ul>
@@ -50,11 +51,11 @@ export default {
     Swiper,SwiperSlide
   },
   props:{
-    family:{//分类(大图 小图 名字)
-      type:Array,
-      default:[]
-    },
-    listAndCarouse:{//列表轮播 列表产品
+    // family:{//分类(大图 小图 名字)
+    //   type:Array,
+    //   default:[]
+    // },
+    indexVeriety:{//列表轮播 列表产品indexVeriety
       type:Array,
       default:[]
     }
@@ -85,17 +86,15 @@ export default {
 
   },
   mounted(){
-    
-    console.log('第一次加载1',this.family)
-    console.log('第一次加载2',this.listAndCarouse)
+    console.log('第一次加载2',this.indexVeriety)
   },
   watch:{
-    family(newVal,oldVal){
-      if(newVal){
-        console.log('我更新了数据1',typeof (this.family),this.family)
-      }
-    },
-    listAndCarouse(newVal,oldVal){
+    // family(newVal,oldVal){
+    //   if(newVal){
+    //     console.log('我更新了数据1',typeof (this.family),this.family)
+    //   }
+    // },
+    indexVeriety(newVal,oldVal){
       if(newVal){
         console.log('我更新了数据2',this.listAndCarouse)
       }

@@ -53,14 +53,8 @@ export default {
 
   },
   mounted(){
-<<<<<<< HEAD
-    
     // console.log('第一次加载1',this.family)
     // console.log('第一次加载2',this.listAndCarouse)
-=======
-    console.log('第一次加载1',this.family)
-    console.log('第一次加载2',this.listAndCarouse)
->>>>>>> fdbfd6bddf799cee3fe3adf4b5c94507a867ad97
   },
   watch:{
     // family(newVal,oldVal){

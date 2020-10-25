@@ -65,20 +65,20 @@ export default {
   },
   mounted(){
     
-    console.log('第一次加载1',this.family)
-    console.log('第一次加载2',this.listAndCarouse)
+    // console.log('第一次加载1',this.family)
+    // console.log('第一次加载2',this.listAndCarouse)
   },
   watch:{
-    family(newVal,oldVal){
-      if(newVal){
-        console.log('我更新了数据1',typeof (this.family),this.family)
-      }
-    },
-    listAndCarouse(newVal,oldVal){
-      if(newVal){
-        console.log('我更新了数据2',this.listAndCarouse)
-      }
-    }
+    // family(newVal,oldVal){
+    //   if(newVal){
+    //     console.log('我更新了数据1',typeof (this.family),this.family)
+    //   }
+    // },
+    // listAndCarouse(newVal,oldVal){
+    //   if(newVal){
+    //     console.log('我更新了数据2',this.listAndCarouse)
+    //   }
+    // }
   }
 }
 </script>

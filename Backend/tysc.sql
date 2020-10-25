@@ -33,19 +33,21 @@ INSERT INTO `tysc_product_family` (`fid`,`fname`,`img`,`img_s`) VALUES
 CREATE TABLE `tysc_index_product`(
   pid INT PRIMARY KEY AUTO_INCREMENT,
 	family_id INT,          #所属分类编号对应fid
-  title VARCHAR(64),
+  -- title VARCHAR(64),
   pic VARCHAR(64),
   href varchar(128)
 );
 INSERT INTO `tysc_index_product` (`pid`,`family_id`, `title`,`pic`,`href`) VALUES
-(1,1,'新土豆约6','images/details/1L/on1/01_t1.jpg','1'),
-(2,1,'精品有机菜','images/details/1L/on1/02_t1.jpg','2'),
-(3,1,'精品青椒D','images/details/1L/on1/03_t1.jpg','3'),
-(4,1,'精品蒜苔','images/details/1L/on1/04_t1.jpg','4'),
+-- (1,1,'新土豆约6','images/details/1L/on1/01_t1.jpg','1'),
+(1,1,'images/details/1L/on1/01_t1.jpg','1'),
+(2,1,'images/details/1L/on1/02_t1.jpg','2'),
+(3,1,'images/details/1L/on1/03_t1.jpg','3'),
+(4,1,'images/details/1L/on1/04_t1.jpg','4'),
 
-(5,2,'燕之坊 自然吊干400g 新疆楼兰...','/img/index_img/2L01.jpg','11'),
-(6,2,'燕之坊 自然吊干400g 新疆楼兰...','/img/index_img/2L01.jpg','11'),
-(7,2,'燕之坊 自然吊干400g 新疆楼兰...','/img/index_img/2L01.jpg','11');
+(5,2,'images/details/1L/on2/01_t1.jpg','8'),
+(6,2,'images/details/1L/on2/01_t1.jpg','9'),
+(7,2,'images/details/1L/on2/01_t1.jpg','10');
+(8,2,'images/details/1L/on2/01_t1.jpg','11');
 
 /**详情页*/-------------
 CREATE TABLE `tysc_product_details` (
@@ -64,8 +66,8 @@ INSERT INTO `tysc_product_details` (`did`,`family_id`,`title`,`price`,`art_no`,`
 (3,1,'精品青椒DS91024','4.20','精品青椒（约0.8斤/份）','999'),
 (4,1,'精品蒜苔/DS91019','5.80','精品蒜苔（约0.94斤/份','994'),
 
-(5,1,'精品蒜苔/DS91019','13.6','精品蒜苔（约0.94斤/份','994'),
-(6,1,'精品蒜苔/DS91019','13.6','精品蒜苔（约0.94斤/份','994'),
+(5,1,'云彩红红心火龙果/DS21560','13.6','红心火龙果个','994'),
+(6,1,'香水菠萝/DS21339 ','10.00','香水菠萝（约3~3.14斤/个）','994'),
 (7,1,'精品蒜苔/DS91019','13.6','精品蒜苔（约0.94斤/份','994');
 /*2L分类*/
 

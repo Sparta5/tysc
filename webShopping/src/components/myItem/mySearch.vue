@@ -8,8 +8,6 @@
                 v-model="value"
                 cancel-text="" placeholder="搜索商品..."
                 >
-            <!-- <mt-cell>
-            </mt-cell> -->
         </mt-search>  
       </van-cell>
       <span class="submit" @click="searchSubmit">搜索</span>
@@ -21,7 +19,7 @@
               v-model="show" close-icon-position="top-right"
               closeable>
         <p><router-link to="/"><img src="https://www.xgdq.com/wap_themes/xgdq3/images/w_img/shouye_logo@2x.png"></router-link></p>
-        <p>热门搜索</p>
+        <p>热门搜索<span><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603451484216&di=f7f60cdd04f4223dc1eca1e7590e15ad&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170206%2F783eba941a32415db050884bd09daa98_th.jpg" alt=""></span></p>
         <ul>
           <!-- 待跳转 -->
           <li><router-link to="/">T10 Plus</router-link></li>
@@ -61,7 +59,6 @@
           </ul>
         </van-collapse-item>
         <van-collapse-item title="核心技术" name="2">
-          
         </van-collapse-item>
         <van-collapse-item title="中央维修" name="3"></van-collapse-item>
         <van-collapse-item title="媒体中心" name="4"></van-collapse-item>
@@ -119,7 +116,8 @@ export default {
     searchSubmit(){//搜索
       this.count = "0";
       this.isCount=true;
-      this.axios.get('/details/search?title='+this.value).then(result=>{
+      var value = (this.value).trim()
+      this.axios.get('/details/search?title='+value).then(result=>{
         let res = result.data;
         if(res.code == 1){
           this.searchRes = res.searchs;
@@ -179,7 +177,7 @@ export default {
     //弹出背景设置
     .popup_bg{
       >ul{
-        padding: 1rem 1.6875rem 0;border-bottom: 0.0325rem solid #e9e9e9;
+        padding: 0.5rem 1.6875rem 0;border-bottom: 0.0325rem solid #e9e9e9;
         height: 5rem;
         li{
           float: left;margin:0rem 1.25rem 0.75rem 0;
@@ -200,7 +198,8 @@ export default {
         font-size: 13px;
         color: #999;
         line-height: 19px;
-        padding: 0.45rem 1.5rem
+        padding: 0.45rem 1.5rem;
+        img{width: 5.5rem;height: 2.575rem;} 
       }
         //搜索结果样式----
       p:nth-child(4){

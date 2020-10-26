@@ -116,7 +116,7 @@ export default {
     },
     //滚动到指定距离范围内时加载更多的服务器数据
     loadMore(){
-      if(this.variety < 3){
+      if(this.variety < 9){
       this.variety++;
         console.log('调用请求函数')
         this.loadData(this.variety)

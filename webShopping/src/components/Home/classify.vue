@@ -7,7 +7,7 @@
           <div><router-link to="/"><img :src="require('../../assets/'+familys.img)"></router-link></div>
           <div>
             <router-link to="/"><img :src="require('../../assets/'+familys.img_s)"></router-link>
-            <router-link to="/"><img :src="require('../../assets/images/index/main/02_log.png')"></router-link>
+            <!-- <router-link to="/"><img :src="require('../../assets/images/index/main/02_log.png')"></router-link> -->
             <strong v-text="familys.fname"></strong>
           </div>
         </div>

@@ -61,10 +61,30 @@ INSERT INTO `tysc_index_product` (`pid`,`family_id`,`pic`,`href`) VALUES
 (11,3,'images/details/3L/on3/yy.jpg','17'),
 (12,3,'images/details/3L/on4/dtb.jpg','18'),
 
-(13,4,'images/details/3L/on1/KYD.jpg','15'),
-(14,4,'images/details/3L/on2/XY.jpg','16'),
-(15,4,'images/details/3L/on3/yy.jpg','17'),
-(16,4,'images/details/3L/on4/dtb.jpg','18');
+(13,4,'images/details/3L/on1/DM.jpg','15'),
+(14,4,'images/details/3L/on2/XNM.jpg','16'),
+(15,4,'images/details/3L/on3/CB.jpg','17'),
+(16,4,'images/details/3L/on4/WN.jpg','18'),
+
+(17,5,'images/details/3L/on1/MSSQjpg','15'),
+(18,5,'images/details/3L/on2/LSQ.jpg','16'),
+(19,5,'images/details/3L/on3/SZGZ.jpg','17'),
+(20,5,'images/details/3L/on4/GLC.jpg','18'),
+
+(21,6,'images/details/3L/on1/ZEG.jpg','15'),
+(21,6,'images/details/3L/on2/NN.jpg','16'),
+(21,6,'images/details/3L/on3/YLGY.jpg','17'),
+(21,6,'images/details/3L/on4/dt.jpg','18'),
+
+(24,7,'images/details/3L/on1/DM.jpg','15'),
+(24,7,'images/details/3L/on2/XNM.jpg','16'),
+(24,7,'images/details/3L/on3/CB.jpg','17'),
+(24,7,'images/details/3L/on4/WN.jpg','18'),
+
+(13,4,'images/details/3L/on1/DM.jpg','15'),
+(14,4,'images/details/3L/on2/XNM.jpg','16'),
+(15,4,'images/details/3L/on3/CB.jpg','17'),
+(16,4,'images/details/3L/on4/WN.jpg','18'),
 
 
 

@@ -22,6 +22,7 @@
           </swiper>
         </div>
         <!-- 分类列表 -->
+        
         <div class="home_list" >
           <ul>
             <li v-for="(proLists,t) of indexVerietys.proList" :key="t">

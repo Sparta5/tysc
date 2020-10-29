@@ -69,8 +69,8 @@ export default {
          },
         slidesPerView: 2.5,//容器能够同时显示的slides数量(carousel模式)
         paginationClickable: true,//点击分页器的指示点分页器会控制Swiper切换
-        spaceBetween: 15, //在slide之间设置距离（单位px）
-        speed:3500,//匀速时间
+        spaceBetween: 10, //在slide之间设置距离（单位px）
+        speed:5500,//匀速时间
         freeMode:true,//设置为true则变为free模式，slide会根据惯性滑动
 		    autoplay: {
           delay: 0,//自动切换的时间间隔，单位ms

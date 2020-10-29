@@ -42,7 +42,7 @@ CREATE TABLE `tysc_index_product`(
 	family_id INT,          #所属分类编号对应fid
   -- title VARCHAR(64),
   pic VARCHAR(64),
-  href varchar(128)
+  href VARCHAR(128)
 );
 INSERT INTO `tysc_index_product` (`pid`,`family_id`,`pic`,`href`) VALUES
 -- (1,1,'新土豆约6','images/details/1L/on1/01_t1.jpg','1'),
@@ -61,31 +61,35 @@ INSERT INTO `tysc_index_product` (`pid`,`family_id`,`pic`,`href`) VALUES
 (11,3,'images/details/3L/on3/yy.jpg','17'),
 (12,3,'images/details/3L/on4/dtb.jpg','18'),
 
-(13,4,'images/details/3L/on1/DM.jpg','15'),
-(14,4,'images/details/3L/on2/XNM.jpg','16'),
-(15,4,'images/details/3L/on3/CB.jpg','17'),
-(16,4,'images/details/3L/on4/WN.jpg','18'),
+(13,4,'images/details/4L/on1/DM.jpg','21'),
+(14,4,'images/details/4L/on2/XNM.jpg','22'),
+(15,4,'images/details/4L/on3/CB.jpg','23'),
+(16,4,'images/details/4L/on4/WN.jpg','24'),
 
-(17,5,'images/details/3L/on1/MSSQjpg','15'),
-(18,5,'images/details/3L/on2/LSQ.jpg','16'),
-(19,5,'images/details/3L/on3/SZGZ.jpg','17'),
-(20,5,'images/details/3L/on4/GLC.jpg','18'),
+(17,5,'images/details/5L/on1/MSSQ.jpg','25'),
+(18,5,'images/details/5L/on2/LSQ.jpg','26'),
+(19,5,'images/details/5L/on3/SZGZ.jpg','27'),
+(20,5,'images/details/5L/on4/GLC.jpg','28'),
 
-(21,6,'images/details/3L/on1/ZEG.jpg','15'),
-(21,6,'images/details/3L/on2/NN.jpg','16'),
-(21,6,'images/details/3L/on3/YLGY.jpg','17'),
-(21,6,'images/details/3L/on4/dt.jpg','18'),
+(21,6,'images/details/6L/on1/ZEG.jpg','29'),
+(22,6,'images/details/6L/on2/NN.jpg','30'),
+(23,6,'images/details/6L/on3/YLGY.jpg','31'),
+(24,6,'images/details/6L/on4/dt.jpg','32'),
 
-(24,7,'images/details/3L/on1/DM.jpg','15'),
-(24,7,'images/details/3L/on2/XNM.jpg','16'),
-(24,7,'images/details/3L/on3/CB.jpg','17'),
-(24,7,'images/details/3L/on4/WN.jpg','18'),
+(25,7,'images/details/7L/on1/ZJHT.jpg','33'),
+(26,7,'images/details/7L/on2/OP.jpg','34'),
+(27,7,'images/details/7L/on3/BLM.jpg','35'),
+(28,7,'images/details/7L/on4/YGG.jpg','36'),
 
-(13,4,'images/details/3L/on1/DM.jpg','15'),
-(14,4,'images/details/3L/on2/XNM.jpg','16'),
-(15,4,'images/details/3L/on3/CB.jpg','17'),
-(16,4,'images/details/3L/on4/WN.jpg','18'),
+(29,8,'images/details/8L/on1/SHY.jpg','37'),
+(30,8,'images/details/8L/on2/xxxy.jpg','38'),
+(31,8,'images/details/8L/on3/sy.jpg','39'),
+(32,8,'images/details/8L/on4/LS.jpg','40'),
 
+(33,9,'images/details/9L/on1/DX.jpg','41'),
+(34,9,'images/details/9L/on2/HS.jpg','42'),
+(35,9,'images/details/9L/on3/SB.jpg','43'),
+(36,9,'images/details/9L/on4/HTYM.jpg','44');
 
 
 /**详情页*/-------------

@@ -10,8 +10,10 @@
          <span>你好,<span>斌斌</span></span>
          <router-link to="/">注销</router-link>
        </div>
+       <!-- 点击菜单样式 -->
        <span class="menu" slot="right"></span>
      </mt-header>
+     <list-box></list-box>
      <!-- 商标、小购物车、搜索跳转 -->
      <div class="min_cart">
        <div><img src="../assets/images/logo_5npf.png" slot="icon"></div>
@@ -25,6 +27,8 @@
          </div>
        </div>
      </div>
+<!-- .s_container,.whiteformbg{ background:url(http://static.websiteonline.cn/website/script/usermanage/img/bg.jpg) top no-repeat #26a860!important;}
+body{ background:url(http://static.websiteonline.cn/website/script/usermanage/img/bg.jpg) top no-repeat #26a860!important;} -->
      <!-- 轮播图区域   -->
     <div class="swipe">
       <mt-swipe 
@@ -54,18 +58,19 @@
       infinite-scroll-immediate-check="true">
       <my-classify :indexVeriety="indexVeriety" v-if="indexVeriety.length !=0"></my-classify>
     </div>
+    <my-floor></my-floor>
     <my-footer></my-footer>
   </div>
 </template>
 
 <script>
-import myFooter from '../components/footer';
 import myClassify from '../components/Home/classify';
-
-
+import myFloor from '../components/floor';
+import myFooter from '../components/footer';
+import listBox from '../components/listBox';
 export default {
   components: {
-    myFooter,myClassify
+   myClassify,myFloor,myFooter,listBox
   },
   data(){
     return{
@@ -136,7 +141,7 @@ export default {
 </script>
 <style lang="scss">
 .home{
-  padding-bottom: 55px;
+  position: relative;
   font-size: 19px;
   .header{
     background-color: rgb(92, 143, 12)!important;
@@ -149,12 +154,14 @@ export default {
       text-decoration: none;
     }
     a:nth-child(2){color: chocolate;}
+    //点击菜单样式----------
     .menu{
       display: inline-block;
-      width: 40px;height: 40px;
+      width: 2.5rem;height: 2.5rem;
       background: url(../assets/images/f8qf.png) no-repeat center center;
-      
     }
+
+    // ----------------------
   }
   //商标、小购物车、搜索跳转-------
   .min_cart{

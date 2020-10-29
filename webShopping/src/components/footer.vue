@@ -33,8 +33,11 @@ export default {
 </script>
 <style lang="scss">
 .footer{
+  position: relative;
+    z-index: 200; 
   .item{
-    background-color: #4d9f39;  
+    background-color: #4d9f39;
+     
   }
   a{&:active{color: yellow;}}
   color: white;

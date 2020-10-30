@@ -16,6 +16,14 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
 
+/*封装成全局获取屏幕的宽高*/
+Vue.prototype.$getViewportSize = function(){
+  return {
+    width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,//兼容性获取屏幕宽度度
+    height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight//兼容性获取屏幕高度
+  }
+}
+
 
 //配置服务器的默认地址
 axios.defaults.baseURL = 'http://127.0.0.1:3000'

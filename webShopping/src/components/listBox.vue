@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="listbox">
+  <div class="listbox" :style="'height:'+onHeight+'px'">
     <div class="pop">
       <ul v-if="isShow">
         <li>
@@ -16,7 +16,7 @@
               ,backgroundSize: '63%'}"></i>
             <span>11</span>
           </router-link>
-        </li>
+        </li> 
         <!-- --------- -->
         <li>
           <router-link to="/">
@@ -57,7 +57,8 @@ export default {
         {img:"images/index/listBox/bg10.jpg",classify:"精品礼盒",family:"10"}
       ], 
         
-      isShow:true
+      isShow:true,
+      onHeight:376
     }
   },
   methods:{
@@ -68,23 +69,28 @@ export default {
         this.isShow = true
       }
     }
+  },
+  mounted(){
+    var viewHeight=this.$getViewportSize();
+    this.onHeight=viewHeight.height;
+    
   }
 }
 </script>
 <style lang="scss">
 .listbox{
-  // position:fixed;
-  position: absolute;
+  position:fixed;
   z-index: 5;
   top: 0px;left:0px;
+  // height: 38.925rem;
   overflow: hidden auto;
   .pop{
     display: block;
     width: 9.75rem;min-height: 90.5rem;
     background-color: #6aa84f;
     ul{
-      >li{
-        width:100%;height:6.4375rem;
+      >li{                                              
+        width:100%;height:6.375rem;
         font-size: 1rem;
         border-bottom: 0.0625rem solid rgba($color: #000000, $alpha: 0.15);
         padding: 0.75rem 0rem;

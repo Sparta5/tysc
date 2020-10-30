@@ -9,9 +9,32 @@
 import myFooter from './components/footer';
 export default {
   components:{
-    // myFooter
+    // myFooter                                                                                                                                                                                                                                                                                                                                                                                        
   }
 }
+</script>
+<script type="text/javascript">
+// document.documentElement.style.fontSize = document.documentElement.clientWidth / 640*100 + 'px';
+
+  // function initWidth() {
+  //     document.getElementById("app").style.width = document.documentElement.clientWidth + 'px'
+  // }
+  // function initFontSize() {
+  //     const cw = document.documentElement.clientWidth
+  //     // width: 375px -> fontSize:16px
+  //     if (cw == 375) {
+  //         document.documentElement.style.fontSize = '16px'
+  //     } else {
+  //         document.documentElement.style.fontSize = cw / 375 * 16 + 'px'
+  //     }
+  // }
+  // initWidth()
+  // initFontSize()
+  // window.onresize = () => {
+  //     initWidth()
+  //     initFontSize()
+  // }
+
 </script>
 <style lang="scss">
 // *{

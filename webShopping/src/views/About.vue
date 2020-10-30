@@ -11,11 +11,11 @@
       </transition>
     </div>
     <ul @click="userClick()">
-      <li :class="isshow?'show':''">111</li>
-      <li :class="isshow?'show':''">222</li>
-      <li :class="isshow?'show':''">333</li>
-      <li :class="isshow?'show':''">444</li>
-      <li :class="isshow?'show':''">555</li>
+      <li :class="isShow?'show':''">111</li>
+      <li :class="isShow?'show':''">222</li>                                                                                       
+      <li :class="isShow?'show':''">333</li>
+      <li :class="isShow?'show':''">444</li>
+      <li :class="isShow?'show':''">555</li>
     </ul>
     </h1>
     <my-floor></my-floor>
@@ -44,13 +44,16 @@ export default {
       }else{
         this.visible=true
       }
-      
     }
+  },
+  mounted(){
+    var value=this.$getViewportSize()
+    console.log(value.width)
   }
 }
 </script>
 <style lang="scss">
-.pop{width: 6.25rem;height: 6.25rem;border: 1px solid red ;}
+// .pop{width: 6.25rem;height: 6.25rem;border: 1px solid red ;}
 .about{
   // height: 300px;margin: 0px auto;
   // border: 1px solid red;

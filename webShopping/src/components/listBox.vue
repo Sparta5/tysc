@@ -1,7 +1,7 @@
 <template>
 <div>
-  <div class="listbox" :style="'height:'+onHeight+'px'">
-    <div class="pop" :style="'min-height:'+onHeight+'px'">
+  <div class="listbox">
+    <div class="pop">
       <ul v-if="isShow">
         <li>
           <router-link to="/">
@@ -27,7 +27,7 @@
       </ul>
       <!-- ----点击显示的----- -->
       <ul class="userClick" v-else>
-        <li>
+        <li class="pops">
           <router-link to="/">
             <i :style="{backgroundImage:'url('+require('../assets/'+listbox[key].img2)+')',backgroundSize:'63%'}">
             </i>
@@ -52,15 +52,15 @@ export default {
       listbox:[
         // {img:"../assets/images/index/listBox/bg1.jpg",classify:"蔬菜类",family:"1"},
         {img:"images/index/listBox/bg1.jpg",img2:"images/index/listBox/bg_1.jpg",pulldown:["大众蔬菜","精品蔬菜"],classify:"蔬菜类",family:"1"},
-        {img:"images/index/listBox/bg2.jpg",img2:"images/index/listBox/bg_2.jpg",pulldown:["大众蔬菜1","精品蔬菜"],classify:"水果类",family:"2"},
-        {img:"images/index/listBox/bg3.jpg",img2:"images/index/listBox/bg_3.jpg",pulldown:["大众蔬菜2","精品蔬菜"],classify:"鱼肉类",family:"3"},
-        {img:"images/index/listBox/bg4.jpg",img2:"images/index/listBox/bg_4.jpg",pulldown:["大众蔬菜3","精品蔬菜"],classify:"干果类",family:"4"},
-        {img:"images/index/listBox/bg5.jpg",img2:"images/index/listBox/bg_5.jpg",pulldown:["大众蔬菜4","精品蔬菜"],classify:"干货类",family:"5"},
-        {img:"images/index/listBox/bg6.jpg",img2:"images/index/listBox/bg_6.jpg",pulldown:["大众蔬菜5","精品蔬菜"],classify:"粮油副食",family:"6"},
-        {img:"images/index/listBox/bg7.jpg",img2:"images/index/listBox/bg_7.jpg",pulldown:["大众蔬菜6","精品蔬菜"],classify:"食品",family:"7"},
-        {img:"images/index/listBox/bg8.jpg",img2:"images/index/listBox/bg_8.jpg",pulldown:["大众蔬菜7","精品蔬菜"],classify:"酒水类",family:"8"},
-        {img:"images/index/listBox/bg9.jpg",img2:"images/index/listBox/bg_8.jpg",pulldown:["大众蔬菜6","精品蔬菜"],classify:"非食",family:"9"},
-        {img:"images/index/listBox/bg10.jpg",img2:"images/index/listBox/bg_10.jpg",pulldown:["大众蔬菜6","精品蔬菜"],classify:"精品礼盒",family:"10"}
+        {img:"images/index/listBox/bg2.jpg",img2:"images/index/listBox/bg_2.jpg",pulldown:["大众水果","精品水果"],classify:"水果类",family:"2"},
+        {img:"images/index/listBox/bg3.jpg",img2:"images/index/listBox/bg_3.jpg",pulldown:["肉类","蛋类","水产类","鸡货"],classify:"鱼肉类",family:"3"},
+        {img:"images/index/listBox/bg4.jpg",img2:"images/index/listBox/bg_4.jpg",pulldown:["坚果类","散果类"],classify:"干果类",family:"4"},
+        {img:"images/index/listBox/bg5.jpg",img2:"images/index/listBox/bg_5.jpg",pulldown:["肉类","蛋类","水产类","鸡货"],classify:"干货类",family:"5"},
+        {img:"images/index/listBox/bg6.jpg",img2:"images/index/listBox/bg_6.jpg",pulldown:["坚果类","散干果"],classify:"粮油副食",family:"6"},
+        {img:"images/index/listBox/bg7.jpg",img2:"images/index/listBox/bg_7.jpg",pulldown:["米","面","油","副食","调味品","素食品"],classify:"食品",family:"7"},
+        {img:"images/index/listBox/bg8.jpg",img2:"images/index/listBox/bg_8.jpg",pulldown:["饮料","酒","奶类","茶饮咖啡"],classify:"酒水类",family:"8"},
+        {img:"images/index/listBox/bg9.jpg",img2:"images/index/listBox/bg_8.jpg",pulldown:["办公用品","五金","百货","洗化","针纺"],classify:"非食",family:"9"},
+        {img:"images/index/listBox/bg10.jpg",img2:"images/index/listBox/bg_10.jpg",pulldown:["干果礼盒","水果礼盒","蔬菜礼盒","新年大礼包","海鲜礼盒"],classify:"精品礼盒",family:"10"}
       ], 
         
       isShow:true,
@@ -72,7 +72,7 @@ export default {
     userClick(i){
       console.log(i)
       this.key=i
-      this.onHeight=670
+      // this.onHeight=690
       if(this.isShow){
         this.isShow = false
       }else{
@@ -89,19 +89,31 @@ export default {
 }
 </script>
 <style lang="scss">
+@keyframes mypop{
+  0%{max-height: 1px;}
+  100%{max-height: 600px;}
+}
+@keyframes ispop{
+  0%{max-height: 600px;}
+  100%{max-height: 1px;}
+}
+.pops{
+  overflow: hidden;
+  animation: mypop 3s;
+}
 .listbox{
   position:fixed;
   z-index: 5;
   top: 0px;left:0px;
-  // height: 38.925rem;
+  height:100vh;
   overflow: hidden auto;
   .pop{
     display: block;
     width: 9.75rem;//min-height: 700px;
     background-color: #6aa84f;
     ul{
-      padding-bottom: 6.4375rem;
-      >li{                                              
+      >li{     
+
         width:100%;
         font-size: 1rem;
         border-bottom: 0.0625rem solid rgba($color: #000000, $alpha: 0.15);
@@ -129,6 +141,7 @@ export default {
         i{background: url("../assets/images/index/listBox/home.jpg") no-repeat center;}
       }
       >li:last-child{
+        padding-bottom: 5.1375rem;
         i{
           background: url("../assets/images/index/listBox/tyjt.jpg") no-repeat center;
           background-size: 63%;
@@ -137,8 +150,10 @@ export default {
     }
     // 下拉菜单
     .userClick {
+      height: 100vh;
       >li{ 
         // i{background-color: white;}
+
         span{
           font-size: 0.9rem;
           padding-top: 0rem;

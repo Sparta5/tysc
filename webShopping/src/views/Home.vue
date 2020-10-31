@@ -11,9 +11,9 @@
          <router-link to="/">注销</router-link>
        </div>
        <!-- 点击菜单样式 -->
-       <span class="menu" slot="right"></span>
+       <span class="menu" slot="right" @click="hidden()"></span>
      </mt-header>
-     <list-box></list-box>
+     <list-box v-if="isHidden"></list-box>
      <!-- 商标、小购物车、搜索跳转 -->
      <div class="min_cart">
        <div><img src="../assets/images/logo_5npf.png" slot="icon"></div>
@@ -27,8 +27,8 @@
          </div>
        </div>
      </div>
-<!-- .s_container,.whiteformbg{ background:url(http://static.websiteonline.cn/website/script/usermanage/img/bg.jpg) top no-repeat #26a860!important;}
-body{ background:url(http://static.websiteonline.cn/website/script/usermanage/img/bg.jpg) top no-repeat #26a860!important;} -->
+        <!-- .s_container,.whiteformbg{ background:url(http://static.websiteonline.cn/website/script/usermanage/img/bg.jpg) top no-repeat #26a860!important;}
+        body{ background:url(http://static.websiteonline.cn/website/script/usermanage/img/bg.jpg) top no-repeat #26a860!important;} -->
      <!-- 轮播图区域   -->
     <div class="swipe">
       <mt-swipe 
@@ -74,6 +74,7 @@ export default {
   },
   data(){
     return{
+      isHidden:false,
       topCarousel:[],//顶部轮播、类别
       indexVeriety:[],//列表轮播和列表
       busy:false,//标识当前服务器正在空闲，可以处理用户滚动行为所触发的滚动方法
@@ -126,8 +127,14 @@ export default {
         console.log('调用请求函数')
         this.loadData(this.variety)
       }
+    },
+    hidden(){
+      if(!this.isHidden){
+        this.isHidden=true
+      }else{
+        this.isHidden=false
+      }
     }
-
   },
   mounted(){
     this.axios.get('/').then(result=>{

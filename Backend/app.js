@@ -9,7 +9,7 @@ var cors=require('cors')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var usersRouter = require('./routes/details');
+var detailsRouter = require('./routes/details');
 
 var app = express();
 
@@ -22,9 +22,15 @@ app.use(cors({
   ],
   credentials:true //要求允许携带cookie
 }))
+
+//使用中间件，将post请求的数据解析为对象
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
+
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -33,13 +39,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/details', usersRouter);
+app.use('/', usersRouter);
+app.use('/details', detailsRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function(err, req, res, next) {

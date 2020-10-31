@@ -35,7 +35,7 @@
           :showIndicators="true"
           :auto="3000"
           :speed="500"
-          :continuous="false">
+          :continuous="true">
           <mt-swipe-item v-for="(carousels,i) of topCarousel" :key="i"><img :src="require('../assets/'+carousels.img)"></mt-swipe-item>
       </mt-swipe>
     </div>

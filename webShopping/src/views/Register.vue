@@ -3,7 +3,7 @@
     <h1>欢迎注册</h1>
     <form action="">
       <div>
-        <input type="text" v-model="phone" @blur="checkPhone" placeholder="手机号">
+        <input type="text" v-model="phone" @blur="checkPhone" placeholder="手机号" maxlength="11">
         <i>*</i>
         <label v-text="phoneStatus"></label>
       </div>
@@ -25,83 +25,115 @@
       <div>
         <i>*</i>
         <van-radio-group v-model="radio" direction="horizontal">
-          <van-radio @click="onRadio(1)" name="1" checked-color="#5f9b7a">
+          <van-radio  name="1" checked-color="#4d9f39">
             男
             </van-radio>
-          <van-radio @click="onRdio(2)" name="2">
+          <van-radio  name="0" checked-color="#4d9f39">
             女
           </van-radio>
         </van-radio-group>
+        <label v-text="radioStatus"></label>
       </div>
       <div class="btn">
-        <van-button @click="submit" type="primary" block>注册</van-button>
+        <van-button @click="submit" type="primary" size="large">注册</van-button>
       </div>
     </form>
+    <div class="jump">
+      <router-link to="/login">已有账号</router-link> |
+      <router-link to="/">返回首页</router-link>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data(){
     return{
-      phone:null,
+      phone:'',
       phoneStatus:null,
 
-      upwd:null,
+      upwd:'',
       upwdStatus:null,
 
-      conupwd:null,
+      conupwd:'',
       conupwdStatus:null,
 
-      uname:null,
+      uname:'',
       unameStatus:null,
       
-      radio:null
+      radio:'',
+      radioStatus:null
     }
   },
   methods:{
     checkPhone(){//手机号验证
       var phoneRegExp = /^1[34578]\d{9}$/
-      if(this.phone == null){this.phoneStatus=='字段不能为空!'; return}
+      if(!this.phone){this.phoneStatus='字段不能为空!'; return}
       if(phoneRegExp.test(this.phone)){
-        this.phoneStatus = null;
-        this.axios.get()
+        this.axios.get('/register?phone='+this.phone).then(res=>{
+          if(res.data.code == 0){this.phoneStatus = '该账号已经被注册！'
+          }else{
+            this.phoneStatus = null;
+          };
+        })
+        this.phoneStatus = '';
         return true
       }else{
         this.phoneStatus = '非法输入!'
         return false
       } 
-
     },
     checkUpwd(){
-      if( this.upwd.length < 6 ){
+      if( this.upwd.length < 6 && this.upwd != null
+      ){
         this.upwdStatus = '密码至少为6位'
         return false
       }else{
-        this.upwdStatus = null
+        this.upwdStatus = null;
         return true
       }
     },
     checkConupwd(){
-      if(this.conupwd =  this.)
+      if(this.conupwd ==  this.upwd){
+        this.conupwdStatus = '';
+        return true;
+      }else{
+        this.conupwdStatus = '两次输入密码不一致';
+      }
     },
     checkUname(){
-
-    },
-    onRadio(){
-
+      var unameRegExp2 = /[#\$%\^&\*@]/;
+      if(this.uname && this.uname.search(unameRegExp2)==-1){
+        this.unameStatus = '';
+        return true;
+      }else{
+        this.unameStatus='字段不能为空，不能含有特殊字符！'
+      }
     },
     submit(){//提交
-
+      if(this.checkPhone() && this.checkUpwd() && this.checkConupwd()){
+        if(this.radio == '') return this.radioStatus = '字段不能为空!';
+        this.axios.get('/register',{
+          params:{
+            phone:this.phone,
+            upwd:this.upwd,
+            uname:this.uname
+          }
+        }).then(res=>{
+          if(res.data.code == 1){
+            this.$router.push({
+              path: '/'
+            });
+          }else{alert('注册失败请重新尝试！')}
+        })
+      }
     }
   }
 }
 </script>
 <style lang="scss">
-body{
+.register{
   height: 100vh;
   background-image: url(../assets/images/bg00.jpg);
-}
-.register{
   >h1{
     text-align: center;
     color: white;
@@ -113,6 +145,7 @@ body{
     >div{
         // 输入框样式
        // margin: 0 2.74375rem 0 1rem;
+      width: 100%;
       padding-bottom:0.6rem;
       position: relative;
       >input{
@@ -127,7 +160,7 @@ body{
       >i{
         color: #eb6100;
         position: absolute;
-        top: 20%;
+        top: 25%;
         left: 0.8rem;
         font-size: 1.5rem;
       }
@@ -140,21 +173,29 @@ body{
       }
       // 选择框按钮的样式
       .van-radio{
-        padding:0.75rem 1.5rem 0.75rem 2rem;
+        padding:0.75rem 1rem 0.75rem 2rem;
         span{
           color: white;
         }
       }
     }
     .btn{
-      margin-left:0.975rem;
+      // margin-left:0.975rem;
       .van-button{
-        border-radius: 0.6875rem;
+        width: 108%;
+        border-radius: 0.4875rem;
         background-color: #fff100;
         color: #26a860;
-        font: 400  1.3rem 宋体;
+        font: 400  1.6rem 宋体;
       }        
     }
+  }
+  .color{color: white;}
+  >.jump{
+    padding-top: 1.5rem;
+    text-align: center;
+     @extend .color;
+    a{@extend .color;}
   }
 }
 </style>

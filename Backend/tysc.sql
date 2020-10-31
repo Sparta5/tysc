@@ -10,12 +10,13 @@ USE tysc;
 CREATE TABLE `user` (
   `uid` INT PRIMARY KEY AUTO_INCREMENT,
   `uname` VARCHAR(16),
-  `upwd`  VARCHAR(16)
+  `phone` VARCHAR(11),
+  `upwd`  VARCHAR(100)
   -- `avatar` VARCHAR(50) NOT NULL DEFAULT `unamed.jpg` COMMENT `用头像`
 );
 #插入数据
-INSERT INTO user VALUES(NULL,'binbin','123456');
-INSERT INTO user VALUES(NULL,'toatao','123456');
+INSERT INTO user VALUES(NULL,'binbin','18728307147','123456');
+INSERT INTO user VALUES(NULL,'toatao','15282395147','123456');
 
 /**分类信息***/
 DROP TABLE IF EXISTS `tysc_product_family`;

@@ -6,14 +6,12 @@ var router = express.Router();
 
 /* 用户注册接口 */
 router.get('/register',(req, res)=>{
-  console.log('ok')
   var $phone = req.query.phone;
   var $upwd = req.query.upwd;
   var $uname = req.query.uname;
   var sql = 'SELECT uid,phone FROM user WHERE phone=? '
   pool.query(sql,[$phone],(err,result)=>{
     if(err) throw err;
-    console.log(result)
     //用户名已存在
     if(result.length > 0){
       res.send({code: 0,msg: 'fail'})
@@ -22,6 +20,7 @@ router.get('/register',(req, res)=>{
       pool.query(sql,[$uname,$phone,$upwd],(err,result)=>{
         if(err) throw err;
         if(result.affectedRows > 0){
+          console.log(result)
           res.send({code:1,msg:'success'})
         }else{
           res.send({code:0,msg:'fail'})

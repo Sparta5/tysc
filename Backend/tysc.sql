@@ -179,13 +179,13 @@ INSERT INTO `tysc_index_carousel` (`cid`,`family_id`,`img`,`title`,`href`) VALUE
 (6,1, 'images/index/carouse_list/1L-02.jpg', '轮播广告商品1', '6'),
 (7,1, 'images/index/carouse_list/1L-03.jpg', '轮播广告商品1', '7'),
 
-(8,2,  'images/index/carouse_list/2L-01.jpg', '轮播广告商品2', '/'),
+(8,2,  'images/index/carouse_list/2L-01.jpg', '轮播广告商品2', '20'),
 (9,2,  'images/index/carouse_list/2L-02.jpg', '轮播广告商品2', '13'),
-(10,2, 'images/index/carouse_list/2L-03.jpg','轮播广告商品2', '/'),
+(10,2, 'images/index/carouse_list/2L-03.jpg','轮播广告商品2', '37'),
 
 (11,3, 'images/index/carouse_list/3L-01.jpg', '轮播广告商品3', '19'),
 (12,3, 'images/index/carouse_list/3L-02.jpg', '轮播广告商品3', '20'),
-(13,3, 'images/index/carouse_list/3L-03.jpg', '轮播广告商品3', '/'),
+(13,3, 'images/index/carouse_list/3L-03.jpg', '轮播广告商品3', '22'),
 
 (14,4, 'images/index/carouse_list/4L-01.jpg', '轮播广告商品4', '19'),
 (15,4, 'images/index/carouse_list/4L-02.jpg', '轮播广告商品4', '7'),

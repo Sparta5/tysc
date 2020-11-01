@@ -11,7 +11,7 @@
         </li>
         <!-- ----中间的循环----- -->
         <li v-for="(listboxs,i) of listbox" :key="i" @click="userClick(i)" >
-          <router-link to="/">
+          <router-link to="">
             <i :style="{background:'url('+require('../assets/'+listboxs.img)+')  no-repeat center'
               ,backgroundSize: '63%'}"></i>
             <span v-text="listboxs.classify"></span>

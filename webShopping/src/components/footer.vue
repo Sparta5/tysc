@@ -28,6 +28,17 @@ export default {
       tabbar:'index'
     }
     
+  },
+  switch:{
+    //监听底部跳转 可以带有两个参数,参数1代表新值,参数2代表旧值
+    tabbar(value){
+      if(value == 'index'){
+        this.$router.push('/').catch(e=>{});
+      }
+      if(value == 'cart'){
+        
+      }
+    }
   }
 }
 </script>

@@ -1,34 +1,7 @@
 <template>
   <div class="home">
-     <mt-header class="header" title="">
-       <div slot="left" class="shortcut" v-if="true">
-         <span>你好，请</span> 
-         <router-link to="/login">登录</router-link> |
-         <router-link to="/register">注册</router-link>
-       </div>
-       <div slot="left" class="shortcut" v-else>
-         <span>你好,<span>斌斌</span></span>
-         <router-link to="/">注销</router-link>
-       </div>
-       <!-- 点击菜单样式 -->
-       <span class="menu" slot="right" @click="hidden()"></span>
-     </mt-header>
-     <list-box v-if="isHidden"></list-box>
-     <!-- 商标、小购物车、搜索跳转 -->
-     <div class="min_cart">
-       <div><img src="../assets/images/logo_5npf.png" slot="icon"></div>
-       <div class="cart_right">
-         <span class="cart_icon"></span>
-         <span>购物车</span>
-         <span> <b>6</b></span>
-         <span>物品</span>
-         <div class="search">
-           <router-link to="/"></router-link>
-         </div>
-       </div>
-     </div>
-        <!-- .s_container,.whiteformbg{ background:url(http://static.websiteonline.cn/website/script/usermanage/img/bg.jpg) top no-repeat #26a860!important;}
-        body{ background:url(http://static.websiteonline.cn/website/script/usermanage/img/bg.jpg) top no-repeat #26a860!important;} -->
+      <!-- 头部 -->
+     <my-header></my-header>
      <!-- 轮播图区域   -->
     <div class="swipe">
       <mt-swipe 
@@ -67,14 +40,13 @@
 import myClassify from '../components/Home/classify';
 import myFloor from '../components/floor';
 import myFooter from '../components/footer';
-import listBox from '../components/listBox';
+import myHeader from '../components/Header'
 export default {
   components: {
-   myClassify,myFloor,myFooter,listBox
+   myClassify,myFloor,myFooter,myHeader
   },
   data(){
     return{
-      isHidden:false,
       topCarousel:[],//顶部轮播、类别
       indexVeriety:[],//列表轮播和列表
       busy:false,//标识当前服务器正在空闲，可以处理用户滚动行为所触发的滚动方法
@@ -128,12 +100,11 @@ export default {
         this.loadData(this.variety)
       }
     },
-    hidden(){
-      if(!this.isHidden){
-        this.isHidden=true
-      }else{
-        this.isHidden=false
-      }
+
+    // 注销登录
+    isLogin(){
+      console.log(11)
+      this.$store.commit('logout')
     }
   },
   mounted(){
@@ -143,76 +114,14 @@ export default {
     });
     //首次且只有一次调用列表和列表轮播
     this.loadData(this.variety)
+    //检测是否登录
+    // if(this.$store.state.isLogined == 1){}
   }
 }
 </script>
 <style lang="scss">
 .home{
-  position: relative;
-  font-size: 19px;
-  .header{
-    background-color: rgb(92, 143, 12)!important;
-    height: 2.6875rem;
-    padding-right: 0px;
-    span{font-size: 16px;margin: 0px 4px;}
-    a{
-      font-size: 16px;
-      color: white;
-      text-decoration: none;
-    }
-    a:nth-child(2){color: chocolate;}
-    //点击菜单样式----------
-    .menu{
-      display: inline-block;
-      width: 2.5rem;height: 2.5rem;
-      background: url(../assets/images/f8qf.png) no-repeat center center;
-    }
 
-    // ----------------------
-  }
-  //商标、小购物车、搜索跳转-------
-  .min_cart{
-    height: 50px;line-height: 50px;
-    border-bottom: 2px dashed #e6e6e6;
-    padding: 0px 10px;
-    vertical-align: auto;
-    div:first-child{
-      display: inline-block;
-      img{width: 140px;height: auto;}
-    }
-    .cart_right{
-      float:right;
-      display: inline-block;
-      height: 50px;
-      width: 161px;
-      display: flex;
-      align-items: center;
-      span{
-        margin: 0px 2px;
-        height: 30px;line-height: 30px;
-        display: inline-block;
-        font-size: 12px;
-        color: #777;
-        font-weight: normal;
-        b{font-weight: 600;color: rgb(170, 9, 9);}
-      }
-      .cart_icon{
-        width: 18px;height: 30px;
-        display: inline-block;
-        background: url(../assets/images/cart_bg.png) no-repeat 0 -207px;
-      }
-      .search{
-        height: 30px;
-        >a{
-          display: inline-block;
-          margin-left: 8px;
-          width: 50px;height: 42px;
-          background: url(../assets/images/a1.jpg) no-repeat;
-        }
-      }
-    }
-  }
-  //--------
   //轮播图-----
   .swipe{
     height: 243px;

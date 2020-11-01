@@ -120,6 +120,14 @@ export default {
           }
         }).then(res=>{
           if(res.data.code == 1){
+            let obj = {
+              uname:this.uname,
+              password:this.password
+            }
+            //提交Mutations
+            this.$store.commit('logined',obj);
+            //添加到webstorage中储存，避免丢失
+            localStorage.setItem('isLogined',1);
             this.$router.push({
               path: '/'
             });

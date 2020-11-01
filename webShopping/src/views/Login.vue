@@ -46,9 +46,15 @@ export default {
       }).then(res=>{
         if(res.data.code == 1){
           Dialog.alert({message: '登录成功'}).then(() => {
-            this.$router.push({
-              path: '/'
-            })
+            //提交Mutation
+            console.log(res.data.info)
+            let obj = {
+              uname:res.data.info
+            }
+            this.$store.commit('logined',obj);
+            localStorage.setItem('isLogined',1)
+            // localStorage.setItem('isLogined',1);
+            this.$router.push('/');
           });
         }else{
           this.isStatus = '账户号或密码错误'
@@ -56,6 +62,9 @@ export default {
       })
     }
   }
+
+  // mounted(){
+  
 }
 </script>
 <style lang="scss">

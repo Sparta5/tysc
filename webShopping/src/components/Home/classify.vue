@@ -27,12 +27,12 @@
           <ul>
             <li v-for="(proLists,t) of indexVerietys.proList" :key="t">
               <div>
-                <router-link to="/">
+                <router-link :to="'details/'+proLists.href">
                 <img :src="require('../../assets/'+proLists.pic)" alt="">
                 </router-link>
               </div>
                                                         <!-- v-text="(proLists.title).slice(0,5)" -->
-              <p> <router-link :to="'ditais/'+proLists.href" v-text="(proLists.title).substring(0,5)"></router-link> </p>
+              <p> <router-link :to="'details/'+proLists.href" v-text="(proLists.title).substring(0,5)"></router-link> </p>
               <p>
                 <label>价格: </label><span v-text="'¥'+proLists.price"></span>
               </p>

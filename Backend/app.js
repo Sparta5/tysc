@@ -18,6 +18,7 @@ app.use(cors({
     'http://localhost:8080', //vue脚手架
     'http://localhost:8081', //vue脚手架
     "http://127.0.0.1:5050", //live server
+    "http://192.168.1.13:8080",
     "http://xzvue.applinzi.com" //新浪云上的vue项目
   ],
   credentials:true //要求允许携带cookie

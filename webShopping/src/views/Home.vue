@@ -102,10 +102,10 @@ export default {
     },
 
     // 注销登录
-    isLogin(){
-      console.log(11)
-      this.$store.commit('logout')
-    }
+    // isLogin(){
+    //   console.log(11)
+    //   this.$store.commit('logout')
+    // }
   },
   mounted(){
     this.axios.get('/').then(result=>{

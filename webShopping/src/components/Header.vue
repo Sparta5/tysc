@@ -49,6 +49,10 @@ export default {
         this.isHidden=false
       }
     },
+    // 注销登录
+    isLogin(){
+      this.$store.commit('logout')
+    }
   }
 }
 </script>

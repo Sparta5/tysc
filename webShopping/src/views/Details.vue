@@ -4,9 +4,9 @@
     <span><router-link to="/"> ＜＜返回</router-link></span>
     <div class="details_car">
       <swiper ref="mySwiper" :options="swiperOptions" class="swiper">
-        <swiper-slide  v-for="(carousels,k) of carouseList" :key="k">
+        <swiper-slide  v-for="(carousels,k) of detail_obj.top_img" :key="k">
           <router-link to="">
-            <img :src="require('../assets/'+ carousels.img)">
+            <img :src="require('../assets/'+carousels)">
           </router-link>
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
@@ -14,23 +14,23 @@
     </div> 
     <div class="case">
       <div>
-        <span>精品有机菜花/DS91025 </span>
-        <span>有机菜花（约4斤~4.4斤/个）</span>        
+        <span v-text="detail_obj.title"></span>
+        <span v-text="detail_obj.art_no"></span>        
       </div>
       <div>
         <label>市场价：¥ 0.00</label>
-        <p>价格：<span>¥ 13.60</span></p>
+        <p>价格：<span>¥ {{detail_obj.price}}</span></p>
       </div>
       <div>
         <span>大宗购物包装规格：</span>
-        <span :class="bor" @click="borColor()"><a href="javascript:void(0);">份</a></span>
+        <span :class="bor" @click="borColor()"><a href="javascript:void(0);" v-text="detail_obj.prosize"></a></span>
       </div>
       <!-- 输入款 -->
       <div>
         <span>数量：</span>
-        <van-stepper v-model="amout" integer @change="onChange"
+        <van-stepper v-model="amout" integer
         input-width="65px" button-size="19px"/> 
-        <span>（库存：99）</span>     
+        <span>（库存：{{detail_obj.inventory}}）</span>     
       </div>
     </div>
     <div class="btn">
@@ -39,17 +39,23 @@
     </div>
     <van-tabs type="card" title-inactive-color="#777"
               title-active-color="#777"
-              color="#fff"
+              color="#b5b5b5"
               background="#eee">
       <van-tab title="产品描述">
         <p class="content">产品描述</p>
+        <div>
+          <span v-for="(imgs,i) of detail_obj.details_img" :key="i">
+            <img :src="require('../assets/'+imgs)">
+          </span>
+        </div>
       </van-tab>
       <van-tab title="购买记录">购买记录</van-tab>
       <van-tab title="客户评论">客户评论</van-tab>
       <van-tab title="买家问答">买家问答</van-tab>
     </van-tabs>
+    <my-floor></my-floor>
+    <my-footer></my-footer>
   </div>
-  
 </template>
 <script>
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
@@ -57,9 +63,16 @@ import { Stepper } from 'vant'
 import { Tab, Tabs } from 'vant';
 import 'swiper/css/swiper.css'
 import myHeader from '../components/Header'
+import myFloor from '../components/floor'
+import myFooter from '../components/footer'
 export default {
   components:{
-    myHeader,Swiper,SwiperSlide
+    myHeader,Swiper,SwiperSlide,myFloor,myFooter
+  },
+  props:{
+    did:{
+      type:String,
+    }
   },
   data() {
     return {
@@ -68,20 +81,31 @@ export default {
         pagination: {
           el: '.swiper-pagination'
         },
-        loop: true,
+        // loop: true,
       },
       carouseList:[//列表轮播 列表产品
         {img:'images/index/carouse_list/1L-01.jpg'},
         {img:'images/index/carouse_list/1L-02.jpg'},
       ],
       amout: 1,//记录数量
-      bor:null
+      bor:null,
+      detail_obj:[]
     }
   },
   methods:{
     borColor(){
       this.bor==null?this.bor='bor':this.bor=null
     }
+  },
+  mounted(){
+    console.log(this.$route)
+    this.axios.get('/details?did='+this.did).then(result=>{
+      var obj = result.data[0];
+      obj.top_img = JSON.parse(obj.top_img);
+      obj.details_img = JSON.parse(obj.details_img);
+      this.detail_obj = obj
+      console.log(this.detail_obj) 
+    })
   }
 }
 </script>
@@ -133,7 +157,7 @@ export default {
       }
     }
   }
-  .btn{//购买加入
+  .btn{//购买/加入
     >button{
       background-image: linear-gradient(#ff4600 100%,#fff);
       border: none;
@@ -143,23 +167,39 @@ export default {
       margin:1rem;
     }
     >button:last-child{
-      background-image: linear-gradient(#fff 30%,#ddd 90%);
+      background-image: linear-gradient(#eee 30%,#fff 100%);
       color: #666;
     }
   }
     //选项卡样式
-  .van-tabs__nav--card{
+  .van-tabs__nav--card{ 
     margin:0rem;
     .van-tab{
       font-size: 1rem;
+      // padding: 0;
+      span{padding: 1.5rem 0;}
     } 
   }
-  .van-tabs__content{
+  .van-tabs__content{//选项卡内容
+    padding: 0.35rem 0rem;
     .van-tab__pane{
-      padding: 1rem 1rem;
-      p{color: red;}
+      padding: 0rem 0.5rem;
+      border:0rem;
+      p{
+        color: #666;
+        padding-left: 0.75rem;
+        height: 2.5rem;line-height: 2.5rem;
+        background-color: #eee;
+      }
+      >div span{
+        img{
+          width: 100%;
+        }
+      }
     }
   } 
+
+
   /*样式穿透*/
   .swiper {
     img{width: 100%;}

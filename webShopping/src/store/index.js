@@ -38,6 +38,7 @@ export default new Vuex.Store({
       state.uname = '';
       localStorage.removeItem('isLogined');
     },
+    //http://www.111com.net/jsp/189153.htm
     //加
     addProduct(state,payload){
       let index = state.prouducts.findIndex(item=>{
@@ -46,7 +47,11 @@ export default new Vuex.Store({
       if(index != -1){
         state.prouducts[index].count++
       }else{
-        state.prouducts.push(payload)
+        state.prouducts.push({
+          num: 1,
+          item,//添加购物车商品数据
+        });
+        ckd:false//添加复选框初始化状态
       }
     },
     //减

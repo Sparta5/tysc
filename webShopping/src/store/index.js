@@ -38,7 +38,6 @@ export default new Vuex.Store({
       state.uname = '';
       localStorage.removeItem('isLogined');
     },
-    //http://www.111com.net/jsp/189153.htm
     //加
     addProduct(state,payload){
       let index = state.prouducts.findIndex(item=>{

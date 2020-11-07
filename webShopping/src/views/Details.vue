@@ -35,7 +35,7 @@
     </div>
     <div class="btn">
       <button>立即购买</button>
-      <button>加入购物车</button>
+      <button @click="add()">加入购物车</button>
     </div>
     <van-tabs type="card" title-inactive-color="#777"
               title-active-color="#777"
@@ -83,10 +83,10 @@ export default {
         },
         // loop: true,
       },
-      carouseList:[//列表轮播 列表产品
-        {img:'images/index/carouse_list/1L-01.jpg'},
-        {img:'images/index/carouse_list/1L-02.jpg'},
-      ],
+      // carouseList:[//列表轮播 列表产品
+      //   {img:'images/index/carouse_list/1L-01.jpg'},
+      //   {img:'images/index/carouse_list/1L-02.jpg'},
+      // ],
       amout: 1,//记录数量
       bor:null,
       detail_obj:[]
@@ -106,6 +106,13 @@ export default {
       this.detail_obj = obj
       console.log(this.detail_obj) 
     })
+  },
+  methods: {
+    //添加商品 调用vue中得add方法
+    add() {
+      console.log(11)
+      this.$store.commit('addProduct',this.detail_obj)
+    }
   }
 }
 </script>

@@ -31,7 +31,12 @@ const routes = [
     path: '/details/:did',
     component: () => import(/* webpackChunkName: "details" */ '../views/Details.vue'),
     props:true
-  } 
+  },
+  {
+    path: '/cart',
+    component: () => import(/* webpackChunkName: "cart" */ '../views/cart.vue'),
+    props:true
+  },
 ]
 
 const router = new VueRouter({

@@ -11,15 +11,7 @@ export default new Vuex.Store({
     uname:localStorage.getItem('uname') ? localStorage.getItem('uname') : '',
     //购物车
     prouducts: [
-      {
-        did: '1',
-        art_no:"新土豆",
-        title: '土豆',
-        price:6555.00,
-        top_img:'',
-        prosize: "个",
-        count:0
-      }
+  
     ]
   },
   getters: {//计算
@@ -49,13 +41,17 @@ export default new Vuex.Store({
       state.uname = '';
       localStorage.removeItem('isLogined');
     },
+    //http://www.111com.net/jsp/189153.html
     //加
     addProduct(state,payload){
       let index = state.prouducts.findIndex(item=>{
-        return item.did == payload.did
-      })       
+        console.log(item)
+        return item.payload.did == payload.did
+        
+      })   
+      console.log(index)    
       if(index != -1){
-        state.prouducts[index].count++
+        state.prouducts[index].num++
       }else{
         state.prouducts.push({
           num: 1,
@@ -63,6 +59,7 @@ export default new Vuex.Store({
           ckd:false//添加复选框初始化状态
         });
       }
+      console.log(state.prouducts)
     },
     //减
     // outProduct(state,payload){

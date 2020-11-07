@@ -22,7 +22,7 @@
        <div class="cart_right">
          <span class="cart_icon"></span>
          <span>购物车</span>
-         <span> <b>6</b></span>
+         <span> <b v-text="this.$store.getters.getCounts"></b></span>
          <span>物品</span>
          <div class="search">
            <router-link to="/"></router-link>

@@ -1,38 +1,92 @@
 <template>
-  <div>
-      <div name="a" v-for="(item,i) of 6" :key="i">
-        <van-checkbox v-model="checkbox">
-          <van-card
-            num="2"
-            price="2.00"
-            desc="描述信息"
-            title="商品标题"
-            thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
-          >
-            <template #tags>
-              <van-tag plain type="danger">标签</van-tag>
-              <van-tag plain type="danger">标签</van-tag>
-            </template>
-            <template #footer>
-              <van-button size="mini">按钮</van-button>
-              <van-button size="mini">按钮</van-button>
-            </template>
-          </van-card>        
-        </van-checkbox>     
+  <div class="cart" @click="handler">
+    <div class="cart_item" v-for="(item,i) of product" :key="i">
+      <span><input type="checkbox" :checked="item.ckd"></span>
+      <span><img src="https://img.yzcdn.cn/vant/ipad.jpeg"></span>
+      <div class="detail">
+        <span v-text="item.payload.art_no"></span><br>
+        <span>大宗包装规格：<em v-text="item.payload.prosize"></em></span>
+        <ul>
+          <li>
+            <button>-</button>
+            <input type="text" :value="item.num" data->
+            <button>+</button>
+          </li>
+          <li><span v-text="'¥  '+item.payload.price.toFixed(2)"></span></li>
+          <li><img src="http://static.websiteonline.cn/website/script/shoppingcart/img/sitestar-shopping-cart-delete.jpg" alt=""></li>
+        </ul>
       </div>
- 
-    <van-submit-bar :price="3050" button-text="提交订单" @submit="onSubmit">
-      <van-checkbox @click="checkAll">全选</van-checkbox>
-    </van-submit-bar>
+    </div>
   </div>
 </template>
 <script>
 export default {
-  
   data(){
     return{
-      checkbox: true
+      product:null   
     }
+  },
+  methods:{
+    handler(e){
+      if(e.target.nodeName=="INPUT" && e.target.type=="checkbox"){
+        console.log(123)
+      }
+    }
+  },
+  mounted(){
+    this.product=this.$store.state.prouducts
+    console.log(this.product)
   }
 }
 </script>
+<style lang="scss">
+.cart{
+
+  .cart_item{
+    padding: 0.625rem;
+    margin: 0.3125rem;
+    display: flex;
+    border:0.0625rem solid orange ;
+    >span:first-child{
+      align-self: center;
+    }
+    >span:nth-child(2){
+      align-self: center;
+      img{
+        width: 4.0625rem;height: 4.0625rem;
+      }
+    }
+    .detail{
+      >span:first-child{
+        color: #555;
+        font-size: 1rem;
+      }
+      span{
+        color: #aaa ;
+        font-size: 0.85rem;
+      }
+      ul{
+        padding-top: 0.6125rem;
+        li{
+          float: left;
+          padding: 0 0.625rem;
+          height: 25px;line-height:20px;
+          input{
+            width: 2.8125rem;
+            text-align: center;
+            border: 0.0625rem solid #999;
+          }
+          button{
+            border: 0.0625rem solid #999;
+          }
+          img{
+            width: 1rem;height: 1rem;
+          }
+        }     
+      }     
+    }
+
+
+  }
+}
+</style>

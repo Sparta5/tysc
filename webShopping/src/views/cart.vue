@@ -1,19 +1,19 @@
 <template>
   <div class="cart" @click="handler">
     <div class="cart_item" v-for="(item,i) of product" :key="i">
-      <span><input type="checkbox" :checked="item.ckd"></span>
+      <span><input type="checkbox" :checked="item.ckd" :data-i="i"></span>
       <span><img src="https://img.yzcdn.cn/vant/ipad.jpeg"></span>
       <div class="detail">
         <span v-text="item.payload.art_no"></span><br>
         <span>大宗包装规格：<em v-text="item.payload.prosize"></em></span>
         <ul>
           <li>
-            <button>-</button>
-            <input type="text" :value="item.num" data->
-            <button>+</button>
+            <button :data-i="i">-</button>
+            <input type="text" :value="item.num">
+            <button :data-i="i">+</button>
           </li>
-          <li><span v-text="'¥  '+item.payload.price.toFixed(2)"></span></li>
-          <li><img src="http://static.websiteonline.cn/website/script/shoppingcart/img/sitestar-shopping-cart-delete.jpg" alt=""></li>
+          <li><span v-text="'¥  '+item.payload.price"></span></li>
+          <li :data-n="'del'" :data-i="i"><img src="http://static.websiteonline.cn/website/script/shoppingcart/img/sitestar-shopping-cart-delete.jpg" alt=""></li>
         </ul>
       </div>
     </div>
@@ -28,8 +28,22 @@ export default {
   },
   methods:{
     handler(e){
+        var i=e.target.dataset.i
       if(e.target.nodeName=="INPUT" && e.target.type=="checkbox"){
-        console.log(123)
+        console.log(i)
+        this.$store.state.prouducts[i].ckd=e.target.checked
+        console.log(this.$store.state.prouducts)
+      }
+      if(e.target.innerHTML == "+"){
+        this.$store.commit('addProduct',this.product[i])
+        console.log(i)
+      }else if(e.target.innerHTML == "-"){
+        var count = -1
+        this.$store.commit('changeNum',{i,count})
+        console.log(this.product[i].num-1)  
+      }else if(e.target.dataset.n == 'del'){
+        // console.log(i)
+        this.$store.commit('delProuduct',i)
       }
     }
   },

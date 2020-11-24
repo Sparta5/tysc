@@ -27,6 +27,13 @@ export default new Vuex.Store({
         }
       })
       return                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       sum
+    },
+    //计算全选
+    isAll(state){
+      var bool = state.prouducts.every((elem,i,arr)=>{
+        return elem.ckd == true
+      })
+      return bool
     }
   },
   mutations: {
@@ -43,23 +50,25 @@ export default new Vuex.Store({
     },
     //http://www.111com.net/jsp/189153.html
     //加
-    addProduct(state,load){
+    addProduct(state,obj){
+      console.log(obj,999)
       let index = state.prouducts.findIndex(item=>{
-        console.log(item)
-        return item.payload.did == payload.load.did
+        // console.log(item.payload.did)
+        return item.payload.did == obj.did
         
       })   
-      console.log(index)    
+      console.log(index,222)    
       if(index != -1){
         state.prouducts[index].num++
       }else{
         state.prouducts.push({
           num: 1,
-          payload,//添加购物车商品数据
+          payload:obj,//添加购物车商品数据
           ckd:false//添加复选框初始化状态
         });
+        console.log(state.prouducts)
       }
-      console.log(state.prouducts)
+      // console.log(state.prouducts,'+')
     },
     //减
     // outProduct(state,payload){
@@ -96,8 +105,15 @@ export default new Vuex.Store({
       var req = state.prouducts[obj.i].num
       if(req > 1 ) state.prouducts[obj.i].num += obj.count;
     },
+    //选中不选择
+    ckd(state,ckd_i){
+      var isCkd=state.prouducts[ckd_i].ckd
+      if(isCkd){state.prouducts[ckd_i].ckd=false}else{state.prouducts[ckd_i].ckd=true}
+      console.log(isCkd)
+
+    },
     // 全选全不选
-    ckd(state,newAll) {
+    ckdAll(state,newAll) {
       state.prouducts.forEach(item => {
         item.ckd = newAll
       })

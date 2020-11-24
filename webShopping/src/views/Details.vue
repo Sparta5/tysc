@@ -110,7 +110,7 @@ export default {
   methods: {
     //添加商品 调用vue中得add方法
     add() {
-      console.log(11)
+      console.log(this.detail_obj,555)
       this.$store.commit('addProduct',this.detail_obj)
     }
   }

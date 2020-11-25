@@ -11,6 +11,10 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  server: {
+    port: 9000, // default: 3000
+    // host: '0.0.0.0', // default: localhost
+    },
   router:{//守卫
     middleware:'auth',
 
@@ -26,10 +30,12 @@ export default {
   },
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    'assets/css/transition.css'
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '~/plugins/router'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -41,8 +47,21 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
+    '@nuxtjs/axios'
   ],
-
+  proxy:{
+    '/index_veriety/':{
+      target:'http://localhost:3000',//代理转发地址
+      changeOrigin:true,
+      pathRewrite:{//地址替换
+        // '^/api':''
+      }
+    }
+  },
+  axios:{
+    proxy:true,//开启axios跨域
+    // prefix:'/api', //baseUrl
+  },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
   }

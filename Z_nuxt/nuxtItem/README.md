@@ -18,3 +18,7 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+数据交互
+  安装：
+  @nuxtjs/axios、@nuxtjs/proxy
